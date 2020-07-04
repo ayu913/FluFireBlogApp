@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterblog/loginpage.dart';
 
+import 'homepage.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.light(),
-      home: LoginPage(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
