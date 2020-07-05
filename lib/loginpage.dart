@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterblog/auth.dart';
+import 'package:flutterblog/dialogbox.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -24,6 +25,7 @@ enum FormType{
 
 class _LoginPageState extends State<LoginPage> {
 
+  DialogBox dialogBox = new DialogBox();
   final formKey = GlobalKey<FormState>();
   FormType _formType = FormType.login;
   // ignore: unused_field
@@ -66,11 +68,13 @@ void moveToLogin() {
          if(_formType==FormType.login)
          {
            String userId = await widget.auth.signIn(_email,_password);
+          //  dialogBox.information(context, "Congratulations", "your are logged in  sucessfully.");
            print("login userId = " + userId);
          }
          else
          {
              String userId = await widget.auth.signUp(_email,_password);
+              // dialogBox.information(context, "Congratulations", "your account has been created sucessfully.");
            print("Register userId = " + userId);
          }
       
@@ -78,6 +82,7 @@ void moveToLogin() {
        }
        catch(e)
        {
+         dialogBox.information(context, "Error =", e.toString());
          print("Error =" + e.toString());
        }
     }
