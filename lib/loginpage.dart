@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutterblog/auth.dart';
 
 class LoginPage extends StatefulWidget {
+
+  LoginPage({
+    this.auth,
+    this.onSignedIn,
+  });
+   final AuthImplementation auth;
+   final VoidCallback onSignedIn;
+
+
   @override
   _LoginPageState createState() => _LoginPageState();
 
- 
+
 }
 
 enum FormType{
@@ -16,8 +26,10 @@ class _LoginPageState extends State<LoginPage> {
 
   final formKey = GlobalKey<FormState>();
   FormType _formType = FormType.login;
-  String _email="";
-  String _password="";
+  // ignore: unused_field
+  String _email = "";
+  // ignore: unused_field
+  String _password = "";
   void moveToRegister() {
     formKey.currentState.reset();
     setState(() {
@@ -45,6 +57,30 @@ void moveToLogin() {
       return false;
     }
     
+  }
+
+  void validateAndSubmit() async{
+    if(validateAndSave())
+    {
+       try{
+         if(_formType==FormType.login)
+         {
+           String userId = await widget.auth.signIn(_email,_password);
+           print("login userId = " + userId);
+         }
+         else
+         {
+             String userId = await widget.auth.signUp(_email,_password);
+           print("Register userId = " + userId);
+         }
+      
+        widget.onSignedIn();
+       }
+       catch(e)
+       {
+         print("Error =" + e.toString());
+       }
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -77,7 +113,7 @@ void moveToLogin() {
         height: 20.0,
       ),
      TextFormField(
-         obscureText:true,
+      
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               hintText: "Email",
@@ -145,7 +181,7 @@ void moveToLogin() {
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
             padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            onPressed: validateAndSave,
+            onPressed: validateAndSubmit,
             child: Text("Login",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -177,7 +213,7 @@ void moveToLogin() {
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
             padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            onPressed: validateAndSave,
+            onPressed: validateAndSubmit,
             child: Text("Create Account",
                 textAlign: TextAlign.center,
                 style: TextStyle(

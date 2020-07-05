@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "780350532499",
+    "firebase_url": "https://flublogapp.firebaseio.com",
+    "project_id": "flublogapp",
+    "storage_bucket": "flublogapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780350532499:android:de61ee1ceb0ff3aa54d666",
+        "android_client_info": {
+          "package_name": "com.example.flutterblog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780350532499-fjtfihjjemo9t2dfudb1c2eahel1gv0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxOjuzyt_rSrIjytXS4VfgwLGEpdkrIYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780350532499-fjtfihjjemo9t2dfudb1c2eahel1gv0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
