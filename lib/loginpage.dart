@@ -1,3 +1,4 @@
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterblog/auth.dart';
 import 'package:flutterblog/dialogbox.dart';
@@ -91,7 +92,25 @@ void moveToLogin() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Flutter Blog App"),
-      centerTitle: true,),
+      centerTitle: true,
+       actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Theme.of(context).brightness == Brightness.light
+                  ? Icons.lightbulb_outline
+                  : Icons.highlight,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              DynamicTheme.of(context).setBrightness(
+                  Theme.of(context).brightness == Brightness.light
+                      ? Brightness.dark
+                      : Brightness.light);
+            },
+          )
+        ],
+      
+      ),
       body: SingleChildScrollView(
               child: Container(
           margin: EdgeInsets.all(15.0),

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -90,7 +91,24 @@ class _PhotoUploadPageState extends State<PhotoUploadPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Upload Image"),
+
         centerTitle: true,
+         actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Theme.of(context).brightness == Brightness.light
+                  ? Icons.lightbulb_outline
+                  : Icons.highlight,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              DynamicTheme.of(context).setBrightness(
+                  Theme.of(context).brightness == Brightness.light
+                      ? Brightness.dark
+                      : Brightness.light);
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
               child: Center(
